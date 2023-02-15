@@ -1,5 +1,5 @@
 # portfolio2023
-Portfolio for Computatiopnal Musicology
+Portfolio for Computational Musicology
 
 My corpus will consist of several Albums by U2, divided into 2 notable groups: Albums before 1991 (Boy, October, War, The Joshua Tree, Rattle and Hum) and albums in the 90's (Achtung Baby, Zooropa, Pop).
 
