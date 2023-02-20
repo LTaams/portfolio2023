@@ -8,4 +8,5 @@ The reason I have chosen for this format is the (quite radical at times) dispari
 A typical track for what I would call the 'early' period is "Sunday Bloody Sunday" (Joshua Tree). It is a punkrock song of protest, perfectly fitting the themes and feel of their (previous) albums. A typical track for the late period would be "Zooropa" (Zooropa), and experimental track that is especially adverse when compared to 'Sunday Bloody Sunday'. Now, there aren't many atypical tracks in the early period, but tracks like 'One' (Achtung Baby) and 'Stay (Faraway, so close)' (Zooropa) are very atypical inbetween their work in the 90's.
 
 WEEK 7
+
 The images which I have included showcase the energy and acousticness levels of the 2 different groups of albums. As can be seen in the plots, the energy levels throughout the 2 periods are similar, though the amount of acoustic tracks decreases by quite a bit in the 90's, which confirms my expectations. It will be interesting to add to this data in more detail!
