@@ -2,29 +2,21 @@
 title: "index.Rmd"
 author: "Lucas Taams"
 date: "2023-02-15"
-output: html_document
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true 
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+### introduction
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Portfolio for Computational Musicology
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+My corpus will consist of several Albums by U2, divided into 2 notable groups: Albums before 1991 (Boy, October, War, The Joshua Tree, Rattle and Hum) and albums in the 90's (Achtung Baby, Zooropa, Pop).
 
-```{r cars}
-summary(cars)
-```
+The reason I have chosen for this format is the (quite radical at times) disparity between the genres, stylistic choices and contextual meanings between these periods. After the Joshua Tree (1987) this change already started taking shape, but the culmination started with Achtung Baby (1991). U2 used to be a punk/rock band, But chose to change radically in the 90's, following in the footsteps of the experimental ideas of Producer and Musician Brian Eno. Eno worked with U2 on the Joshua Tree (amongst other things), but employed a much more aetherial, electronic sound in his own works. This, in combination with the rise of 'dance' and electronic music in the 90's, shaped the stylistic choices made by the band throughout the 90's. With these choices they both lost and gained some fans. I am curious to see how these periods compare, and how we can use spotify to dive into this topic.
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+A typical track for what I would call the 'early' period is "Sunday Bloody Sunday" (Joshua Tree). It is a punkrock song of protest, perfectly fitting the themes and feel of their (previous) albums. A typical track for the late period would be "Zooropa" (Zooropa), and experimental track that is especially adverse when compared to 'Sunday Bloody Sunday'. Now, there aren't many atypical tracks in the early period, but tracks like 'One' (Achtung Baby) and 'Stay (Faraway, so close)' (Zooropa) are very atypical inbetween their work in the 90's.
