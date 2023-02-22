@@ -5,18 +5,43 @@ date: "2023-02-15"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true 
+    theme: lumen
 ---
+```{r, test}
+library(tidyverse)
+library(spotifyr)
+library(plotly)
+library(compmus)
+library(knitr)
+library(gridExtra)
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r, playlists, echo=FALSE}
+old <- get_playlist_audio_features("", "5c80tWKQ1LRPgKqCTEcYKl")
+U290s <- get_playlist_audio_features("", "2X6yRUJ8L0fGif3fdAii51")
+```
 
 ### introduction
 
-Portfolio for Computational Musicology
+**Portfolio for Computational Musicology**
 
 My corpus will consist of several Albums by U2, divided into 2 notable groups: Albums before 1991 (Boy, October, War, The Joshua Tree, Rattle and Hum) and albums in the 90's (Achtung Baby, Zooropa, Pop).
 
 The reason I have chosen for this format is the (quite radical at times) disparity between the genres, stylistic choices and contextual meanings between these periods. After the Joshua Tree (1987) this change already started taking shape, but the culmination started with Achtung Baby (1991). U2 used to be a punk/rock band, But chose to change radically in the 90's, following in the footsteps of the experimental ideas of Producer and Musician Brian Eno. Eno worked with U2 on the Joshua Tree (amongst other things), but employed a much more aetherial, electronic sound in his own works. This, in combination with the rise of 'dance' and electronic music in the 90's, shaped the stylistic choices made by the band throughout the 90's. With these choices they both lost and gained some fans. I am curious to see how these periods compare, and how we can use spotify to dive into this topic.
 
 A typical track for what I would call the 'early' period is "Sunday Bloody Sunday" (Joshua Tree). It is a punkrock song of protest, perfectly fitting the themes and feel of their (previous) albums. A typical track for the late period would be "Zooropa" (Zooropa), and experimental track that is especially adverse when compared to 'Sunday Bloody Sunday'. Now, there aren't many atypical tracks in the early period, but tracks like 'One' (Achtung Baby) and 'Stay (Faraway, so close)' (Zooropa) are very atypical inbetween their work in the 90's.
+
+### Week 7 
+```{r, echo=FALSE}
+p1 <- old |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth()
+```
+
+some text 
+
+```{r, echo=FALSE}
+p2 <- U290s |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth()
+grid.arrange(p1, p2, nrow = 1)
+```
