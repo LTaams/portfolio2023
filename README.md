@@ -10,3 +10,5 @@ A typical track for what I would call the 'early' period is "Sunday Bloody Sunda
 WEEK 7
 
 The images which I have included showcase the energy and acousticness levels of the 2 different groups of albums. As can be seen in the plots, the energy levels throughout the 2 periods are similar, though the amount of acoustic tracks decreases by quite a bit in the 90's, which confirms my expectations. It will be interesting to add to this data in more detail!
+
+https://github.com/LTaams/portfolio2023/blob/e289978b5b3f57189ae8abc4b7f08c3fb3028e94/U2new%20Energy-Acoustic.png
