@@ -11,4 +11,11 @@ WEEK 7
 
 The images which I have included showcase the energy and acousticness levels of the 2 different groups of albums. As can be seen in the plots, the energy levels throughout the 2 periods are similar, though the amount of acoustic tracks decreases by quite a bit in the 90's, which confirms my expectations. It will be interesting to add to this data in more detail!
 
-https://github.com/LTaams/portfolio2023/blob/e289978b5b3f57189ae8abc4b7f08c3fb3028e94/U2new%20Energy-Acoustic.png
+U2 Old: 
+
+![U2old energy-acoustic](https://user-images.githubusercontent.com/99725777/220617714-a2aa83cf-9810-4168-8d2c-4c355c7e3937.png)
+
+U2 New: 
+
+![U2new Energy-Acoustic](https://user-images.githubusercontent.com/99725777/220617667-121aa3e2-e691-425a-adfe-d7a2c25ad90a.png)
+
