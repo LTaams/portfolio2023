@@ -34,7 +34,7 @@ The reason I have chosen for this format is the (quite radical at times) dispari
 
 A typical track for what I would call the 'early' period is "Sunday Bloody Sunday" (Joshua Tree). It is a punkrock song of protest, perfectly fitting the themes and feel of their (previous) albums. A typical track for the late period would be "Zooropa" (Zooropa), and experimental track that is especially adverse when compared to 'Sunday Bloody Sunday'. Now, there aren't many atypical tracks in the early period, but tracks like 'One' (Achtung Baby) and 'Stay (Faraway, so close)' (Zooropa) are very atypical inbetween their work in the 90's.
 
-### Visualisation
+### Track-level Features
 
 ```{r, echo=FALSE}
 p1 <- old |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth()
@@ -45,5 +45,13 @@ p2 <- U290s |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_s
 grid.arrange(p1, p2, nrow = 1)
 ```
 
-### Discussion
-**on the visualisation page, the graph on the left shows the relation between energy and acousticness in the songs by U2 from before 1990 and the graph on the right does the same for the 90's period.This showcases that the experimental phase of U2 in the 90's goes hand in hand with a decrease in overall acousticness, whilst maintaining the energy present in their earlier work. Interestingly enough, the outlier in the bottom right of the right-side graph is U2's mega hit 'One'.**
+### Chroma features
+
+### Loudness and Timbre
+
+###Temporal features
+
+###Classification and Clustering
+
+### Discussion/Conclusion
+**On the visualisation page, the graph on the left shows the relation between energy and acousticness in the songs by U2 from before 1990 and the graph on the right does the same for the 90's period.This showcases that the experimental phase of U2 in the 90's goes hand in hand with a decrease in overall acousticness, whilst maintaining the energy present in their earlier work. Interestingly enough, the outlier in the bottom right of the right-side graph is U2's mega hit 'One'.**
