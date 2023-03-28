@@ -37,12 +37,20 @@ A typical track for what I would call the 'early' period is "Sunday Bloody Sunda
 ### Track-level Features
 
 ```{r, echo=FALSE}
-p1 <- old |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth() + ggtitle("U2 before the 90's")
+p1 <- old |> ggplot(aes(x = acousticness, y = energy, text = track.name)) + 
+  geom_point() + geom_smooth() + labs(title = "U2 before the 90's")
+p1 <- ggplotly(p1, tooltip = c("x", "y", "text"))
+p1 <- layout(p1, title = "U2 before the 90's")
+p1 <- p1 %>% layout(title = "U2 before the 90's")
 ```
 
 ```{r, echo=FALSE}
-p2 <- U290s |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth() + ggtitle("U2 in the 90's")
-grid.arrange(p1, p2, nrow = 1)
+p2 <- U290s |> ggplot(aes(x = acousticness, y = energy, text = track.name)) + 
+  geom_point() + geom_smooth() + labs(title = "U2 in the 90's")
+p2 <- ggplotly(p2, tooltip = c("x", "y", "text"))
+p2 <- layout(p2, title = "U2 in the 90's")
+
+subplot(p1, p2, nrows = 1)
 ```
  
 ### Chroma features
