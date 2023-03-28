@@ -37,14 +37,14 @@ A typical track for what I would call the 'early' period is "Sunday Bloody Sunda
 ### Track-level Features
 
 ```{r, echo=FALSE}
-p1 <- old |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth()
+p1 <- old |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth() + ggtitle("U2 before the 90's")
 ```
 
 ```{r, echo=FALSE}
-p2 <- U290s |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth()
+p2 <- U290s |> ggplot(aes(x = acousticness, y = energy)) + geom_point() + geom_smooth() + ggtitle("U2 in the 90's")
 grid.arrange(p1, p2, nrow = 1)
 ```
-
+ 
 ### Chroma features
 
 ### Loudness and Timbre
