@@ -52,14 +52,23 @@ p2 <- layout(p2, title = "U2 in the 90's")
 
 subplot(p1, p2, nrows = 1)
 ```
- 
+
 ### Chroma features
+
+Chroma Features here
 
 ### Loudness and Timbre
 
-###Temporal features
+Loudness and Timbre something
 
-###Classification and Clustering
+### Temporal features
+
+Temporal something
+
+### Classification and Clustering
+
+Classification something
 
 ### Discussion/Conclusion
-**On the visualisation page, the graph on the left shows the relation between energy and acousticness in the songs by U2 from before 1990 and the graph on the right does the same for the 90's period.This showcases that the experimental phase of U2 in the 90's goes hand in hand with a decrease in overall acousticness, whilst maintaining the energy present in their earlier work. Interestingly enough, the outlier in the bottom right of the right-side graph is U2's mega hit 'One'.**
+
+On the visualisation page, the graph on the left shows the relation between energy and acousticness in the songs by U2 from before 1990 and the graph on the right does the same for the 90's period.This showcases that the experimental phase of U2 in the 90's goes hand in hand with a decrease in overall acousticness, whilst maintaining the energy present in their earlier work. The outlier on the bottom right is a song called 'October', 
