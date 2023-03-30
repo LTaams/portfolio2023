@@ -6,7 +6,6 @@ output:
   flexdashboard::flex_dashboard:
     storyboard: true 
     theme: lumen
-    self_contained: false
 ---
 ```{r, test}
 library(tidyverse)
