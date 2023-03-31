@@ -208,7 +208,7 @@ One |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   scale_fill_viridis_c() +                              
   theme_classic() +
-  scale_x_continuous(breaks = c(60, 120, 180, 240))
+  scale_x_continuous(breaks = c(60, 120, 180, 240, 300))
 ```
 
 Sidebar {.sidebar}
@@ -218,12 +218,48 @@ Sidebar {.sidebar}
 
 The Cepstogram (or 'Timbregram') on the right showcases the Timbre features of one of U2's most well known songs: 'One' (1991) from the album 'Achtung Baby'. This album showcases the transition between their early work and their experimental phase in the 90's. It also provides the only number 1 hit they score in this period, which ironically is closest to their earlier work as well. 'One' has quite a standard structure: (V-CH-V2-CH2-V3-CH3-B-Ch4-Outtro) but increases in energy exponentially towards the climax where singer Bono exclaims 'Higher! (Baby). This is represented very well in the cepstogram, where timbre feature c01 (loudness) increases in magnitude all the way through to the end.
 
+We also see an increase in magnitude on c05 (Standard pitch deviation). This is likely due to the Edge's (guitarist) riffs. Although they are simple from a musicians perspective, they do create a level of harmonic complexity which causes the increase in magnitude. Around 50sec and 110sec, this guitar makes room for a more staccato use of chords, explaining the slight decrease in magnitude at this point. The Edge uses a fat guitar sound with slight echo and delay, which creates his iconic sound.
 
+The harmonic content (co6) has a low magnitude, which is logical from a musicians perspective (like I mentioned earlier) because many of the harmonic patterns are continuously repeated throughout the song. An explanation as to why the magnitude drops as the song progresses could be that the harmonic content becomes more noisy and muddy as the loudness increases, making unique instruments less able to stand out amongst the rest. 
+
+Many of the disco tracks of the 90's are represented by synth basses and electronic instruments that operate on the low end of the frequency spectrum. The spectral rolloff (c11) and spectral centroid (c07) values indicate that 'One' does not operate in this part of the spectrum too much, meaning the noise and muddiness as indicated by c06 aren't (primarily) caused by this phenomenon. 
 
 Temporal features
 =====================================
 
-Temporal something
+### Tempogram 'Mofo'
+```{r, echo=FALSE}
+knitr::include_graphics("/Users/lucastaams/portfolio2023/Mofo tempogram.png")
+```
+
+### Tempogram 'Surrender'
+```{r, echo=FALSE}
+knitr::include_graphics("/Users/lucastaams/portfolio2023/Surrender Tempogram.png")
+```
+
+Sidebar {.sidebar}
+-------------------------------------
+
+*Temporal comparisons*
+
+For my temporal comparisons I have chosen the 2 tracks with the highest energy values from both periods (according to the scatter plot on the track features page). They are also both over 5 minutes, making them, to an extent, equals in their own time periods.
+
+Although the tempo of both of these tracks is high, it does not exceed the allegretto domain (112-124BPM). This is logical for 'Surrender', which comes from the album 'War' (1983) and still exists within the post-punk/new wave era of the band. Mofo (120BPM), being their highest energy song from the 90's, showcases that they embraced the disco genre (which is characterised by a BPM between 110-135).
+
+One can also see that although the tempo of both tracks is constant, 'Surrender' has a much thicker and more winding line running across the tempogram. This can be attributed to the recording of more live instruments (especially drums and bass). One can conclude that a metronome was most likely used for the recording, although this tempogram shows that when all instruments are actually played and recorded by musicians, the song is more 'alive' and does not adhere to the strict tempo of an electronic beat. 
+
+The BPM line for 'Mofo', however, is as straight as it gets with only mild variations, as I'll explain below.
+
+To go a bit deeper into both songs/tempograms:
+
+*Mofo*
+
+Mofo is based around a sample from the 1970 disco hit "Funky Nassau" by the Bahama Soul Stew. Although the beat and rhythm of the track are very reminiscent of 90's disco, it's the structure of the track which connects it to U2's characteristic rock style. The song tempo is 120 BPM, but shows significant tempo deviations/harmonics towards the middle and ending of the song. At 2:43, the drums completely dissappear and they only pick up again around 3:00, which explains the deviation there. Towards the end of the song something interesting happens, as the guitar starts playing 16th notes off-sync to the beat, creating what I like to call a 'rotary spacious feeling', almost like a helicopter (this is caused by offset delays on the guitar). I find it very interesting that the spectogram recognises this as a  rhythmical element.
+
+*Surrender* 
+
+The song tempo is a pretty steady 117 BPM but the tempogram shows one deviation between 2:35 - 2:50, which is when the snaredrum drops out and a break of sorts occurs, disrupting the pattern displayed in the drums throughout the rest of the song. Although the tempo doesn't change this does throw off the computation, as can be seen by the vertical line around the middle of the tempogram.
+
 
 Classification and Clustering
 =====================================
