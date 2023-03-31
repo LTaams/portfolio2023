@@ -61,27 +61,34 @@ On a sidenote, I would like to inform the reader that even though I have made a 
 Track-level Features
 =====================================
 
+Row
+------
+
+### U2 pre-90's
+
 ```{r, echo=FALSE}
-p1 <- old |> ggplot(aes(x = acousticness, y = energy, text = track.name)) + 
+
+old |> ggplot(aes(x = acousticness, y = energy, text = track.name)) + 
   geom_point() + geom_smooth() + labs(title = "U2 before the 90's", x = "Acousticness", y = "Energy") + theme(aspect.ratio = 1)
-p1 <- ggplotly(p1, tooltip = c("x", "y", "text"))
-p1 <- layout(p1, title = "U2 before the 90's")
-p1 <- p1 %>% layout(title = "U2 before the 90's")
+ggplotly(tooltip = c("x", "y", "text"))
 ```
 
-```{r, echo=FALSE}
-p2 <- U290s |> ggplot(aes(x = acousticness, y = energy, text = track.name)) + 
-  geom_point() + geom_smooth() + labs(title = "U2 in the 90's", x = "Acousticness", y = "Energy") + theme(aspect.ratio = 1)
-p2 <- ggplotly(p2, tooltip = c("x", "y", "text"))
-p2 <- layout(p2, title = "U2 in the 90's")
+Row
+------
 
-subplot(p1, p2, nrows = 1)
+### U2 90's
+```{r, echo=FALSE}
+U290s |> ggplot(aes(x = acousticness, y = energy, text = track.name)) + 
+  geom_point() + geom_smooth() + labs(title = "U2 in the 90's", x = "Acousticness", y = "Energy") + theme(aspect.ratio = 1)
+ ggplotly(tooltip = c("x", "y", "text"))
+
 ```
 
 Sidebar {.sidebar}
 -------------------------------------
 
 *Discussion*
+
 The graph on the left shows the relation between energy and acousticness in the songs by U2 from before 1990 and the graph on the right does the same for the 90's period. This showcases that the experimental phase of U2 in the 90's goes hand in hand with a decrease in overall acousticness, whilst maintaining the energy present in their earlier work. The outlier on the bottom right is a song called 'The First Time'. I have chosen to limit these plots to the songs before 2000, as their 2000 album 'All that you can't leave behind' (featuring smash hit 'Beautiful day') meant a return to their style from the 80's after 'POP' (1997), their most dissapointing album in terms of sales and reviews. 
 
 The reason for the return to their old style after the turn of the century has everything to do with the struggles of the band in the 90's, which came from their will to innovate and 'move with the times' (although I think they just had a bit of an identity crisis). Comparing the pre 1990 and post 1990 period in a computational manner will shed a light on the most extensive differences between the two periods, which I will relate to the consequences this had for the band and their music going forward.
@@ -153,7 +160,7 @@ Sidebar {.sidebar}
 
 On this page I showcase the chroma features of three different tracks by U2, to delve a bit deeper into the harmonic structure of some of their songs in different periods. I have chosen:
 
-'The First Time', an outlier track from the 90s which displays a combination of low energy and high acousticness that is unusual for their music from that period. It is also quite monotone in its harmonic structure, in contrast to the track 'Mofo' on its right, which is from the same period but radically different. 
+'The First Time' (Key: ), an outlier track from the 90s which displays a combination of low energy and high acousticness that is unusual for their music from that period. It is also quite monotone in its harmonic structure, in contrast to the track 'Mofo' on its right, which is from the same period but radically different. 
 
 'Mofo', produced by synthpop producer Mark Ellis (aka Flood) is an eclectic, high energy song which has an acousticness of near zero (understandably). It is very representative of the artistic turn U2 took in the 90's embracing dance and disco whilst leaving the elements that made them famous in the 80's behind. The use of modulating, distorted synths and the fast tempo of the song atrribute to its energy and acousticness rating, but are also reflected in the chromagram which is a bit all over the place, as it struggles with these effects. 
 
