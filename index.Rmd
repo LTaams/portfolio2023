@@ -8,6 +8,7 @@ output:
     theme: lumen
     layout: pageWithSidebar
     orientation: rows
+    sanitize_text: false
 ---
 ```{r, test}
 library(tidyverse)
@@ -19,6 +20,9 @@ library(gridExtra)
 library(dplyr)
 library(shiny)
 library(rmarkdown)
+library(tidymodels)
+library(heatmaply)
+library(htmltools)
 ```
 
 ```{r setup, include=FALSE}
@@ -58,7 +62,47 @@ One <- get_tidy_audio_analysis("3G69vJMWsX6ZohTykad2AU") |>
       )
   )
 
+U290s2 <-
+  get_playlist_audio_features("", "2X6yRUJ8L0fGif3fdAii51") |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
 
+old2 <-
+  get_playlist_audio_features("", "5c80tWKQ1LRPgKqCTEcYKl") |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
 ```
 
 Introduction
@@ -68,13 +112,20 @@ Introduction
 
 My corpus will consist of several Albums by U2, divided into 2 notable groups: Albums before 1991 (Boy, October, War, The Joshua Tree, Rattle and Hum) and albums in the 90's (Achtung Baby, Zooropa, Pop).
 
-The reason I have chosen for this format is the (quite radical at times) disparity between the genres, stylistic choices and contextual meanings between these periods. After the Joshua Tree (1987) this change already started taking shape, but the culmination started with Achtung Baby (1991). U2 used to be a punk/rock band, But chose to change radically in the 90's, following in the footsteps of the experimental ideas of Producer and Musician Brian Eno. Eno worked with U2 on the Joshua Tree (amongst other things), but employed a much more aetherial, electronic sound in his own works. This, in combination with the rise of 'dance' and electronic music in the 90's, shaped the stylistic choices made by the band throughout the 90's. With these choices they both lost and gained some fans. I am curious to see how these periods compare, and how we can use spotify to dive into this topic.
+The reason I have chosen for this format is the (quite radical at times) disparity between the genres, stylistic choices and contextual meanings between these periods. After the Joshua Tree (1987) this change already started taking shape, but the culmination started with Achtung Baby (1991). U2 used to be a punk/rock/new wave band, But chose to change radically in the 90's, following in the footsteps of the experimental ideas of Producer and Musician Brian Eno. Eno worked with U2 on the Joshua Tree (amongst other things), but employed a much more aetherial, electronic sound in his own works. This, in combination with the rise of 'dance' and electronic music in the 90's, shaped the stylistic choices made by the band throughout the 90's. With these choices they lost many fans who had been with them since the beginning. I am curious to see how these periods compare, and how we can use spotify to dive into this topic.
 
 A typical track for what I would call the 'early' period is "Sunday Bloody Sunday" (Joshua Tree). It is a punkrock song of protest, perfectly fitting the themes and feel of their (previous) albums. A typical track for the late period would be "Zooropa" (Zooropa), and experimental track that is especially adverse when compared to 'Sunday Bloody Sunday'. Now, there aren't many atypical tracks in the early period, but tracks like 'One' (Achtung Baby) and 'Stay (Faraway, so close)' (Zooropa) are very atypical inbetween their work in the 90's. 
 
 It will be very interesting to discover in what ways the Spotify API can provide an insight into the disparity between the 2 periods, as well as a more in-depth review of some of the outlying tracks in both periods, also taking into consideration the significant advancements made in the field of music production in and around the 90's. 
 
 On a sidenote, I would like to inform the reader that even though I have made a valiant attempt to create a visually pleasable and feasible template for this dashboard, my lack (or rather complete absence) of computing and coding experience has made this a frustrating and time-consuming task. I have therefore decided to focus on the content of the portfolio, rather than the visual layout. I apologise in advance if this makes my portfolio unclear in any way. As I said, I have tried my very best... 
+
+Sidebar {.sidebar}
+-------------------------------------
+
+```{r, echo=FALSE}
+htmltools::includeHTML ("~/portfolio2023/Spotify playlists.Rhtml")
+```
 
 
 Track-level Features
@@ -261,10 +312,113 @@ The song tempo is a pretty steady 117 BPM but the tempogram shows one deviation 
 Classification and Clustering
 =====================================
 
-Classification something
+### Heatmap U2 before 1990
+
+```{r, echo=FALSE, cache = TRUE}
+old2_unique <- old2 %>%
+  mutate(track.name = make.names(track.name, unique = TRUE)) %>%
+  distinct(track.name, .keep_all = TRUE)
+
+old2_juice <- recipe(
+  track.name ~
+    danceability +
+    energy +
+    loudness +
+    acousticness +
+    instrumentalness +
+    liveness +
+    valence +
+    tempo,
+  data = old2_unique
+) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  step_range(all_predictors()) |>
+  prep() |>
+  juice() |>
+  column_to_rownames("track.name")
+
+heatmaply(old2_juice,
+           hclustfun = hclust,
+           hclust_method = "average",
+           dist_method = "euclidean",
+           showticklabels = TRUE,    
+           fontsize_row = 8,         
+           fontsize_col = 8,  
+)
+```
+### Heatmap U2 90's
+
+```{r, echo=FALSE, cache = TRUE}
+U290s2_unique <- U290s2 %>%
+  mutate(track.name = make.names(track.name, unique = TRUE)) %>%
+  distinct(track.name, .keep_all = TRUE)
+
+U290s2_juice <- recipe(
+  track.name ~
+    danceability +
+    energy +
+    loudness +
+    acousticness +
+    instrumentalness +
+    liveness +
+    valence +
+    tempo,
+  data = U290s2_unique
+) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  step_range(all_predictors()) |>
+  prep() |>
+  juice() |>
+  column_to_rownames("track.name")
+
+heatmaply(U290s2_juice,
+          hclustfun = hclust,
+          hclust_method = "average",
+          dist_method = "euclidean",
+          showticklabels = TRUE,    
+          fontsize_row = 8,         
+          fontsize_col = 8, 
+          )
+```
+
+*CLustering Heatmaps*
+
+The interactive heatmaps on the right side show both the playlists within my corpus clustered together based on some of the Spotify API's track feature classifications. 
+
+The left heatmap showcases the playlist of songs by U2 before 1990. When listening to the songs from top to bottom, the intensity and energy of the songs increases. Songs like 'Freedom for my people' (just 1 guitar) and 'October' (just a piano) are nicely clustered together, whilst the more adventurous, 'heavy' recordings are grouped at the bottom. 
+
+For the heatmap on the right, the songs are ordered in a similar manner. Here we find the most energetic and 'disco-like' songs at the top, and the more low-energy acoustic songs at the bottom. 
+
 
 Discussion/Conclusion
 =====================================
 
-Sidebar {.sidebar}
+### **DISCUSSION**
+
+In this portfolio I have used several track level analyses to showcase the differences between the two time periods. To do this I used some of the songs which lie at the extremes of what one would call 'typical' songs for the period. Taking into account the decline in popularity of U2 in the 90's, it is clear that this has to do with the high contrast between the two periods in terms of stylistic choices, energy and acousticness, as well as timbre features. 
+
+The timbre analysis of 'One' shows that it is not a typical track for the 90's disco-like style of U2 and might also explain why it is that 'One' became such a smash hit, in a period where the band was struggling with its identity (ironic, when you take the lyrics of 'One' into consideration).
+
+I always felt that in their 90's albums, U2 lost their ability to connect with me on a deeper level. Their music became shallow, felt overproduced and became more and more abstract. The tempograms show very clearly the disparity in philosophy between the two periods. Before the 90's the music was 'alive'. It lived and breathed and preached. This was lost in their later music, which they luckily realised when the turn of the century came about.
+
+All in allI think the comparison between the 2 periods was quite interesting and useful, and has helped me understand the intricacies of the separation between the 2 periods. Now not only as a sense of feeling and intuition, but also grounded in computational analysis.
+
+### **IN CONCLUSION**
+
+When I started this project I already had a clear image in my mind of the differences between the two time periods in U2's career, mostly based on my own listening experience and previous research I have done in regards to the band (I analysed some of their songs and recording techniques for a conservatory assignment, for example). I soon realised that in analysing on both track and corpus level I was looking to confirm my own premonitions. It was very interesting to see how those premonitions sometimes diverted from the Spotify API, although I also realised that my personal knowledge of the music kickstarted (at times) a sense of disagreeableness. I would be delighted to learn more about the algorithm behind the Spotify API, to see how it comes to certain conclusions. It seems, however, that this is just as likely as finding out what is on the inside of a supermassive black hole. Alas, I digress.
+
+Lastly, I'd like to convey that working with R studio to analyse Spotify's API has been a teachable (and often humbling) experience, definitely not without its ups and downs. It is very rewarding to see a piece of code work after (sometimes) hours of struggling. There are countless more avenues to explore when it comes to computational analysis, so I feel like there's an opportunity for me to spend many more hours wrestling with this. Thank you for reading my portfolio!
+
+*bibliograpy*
+
+Spotify (2023)
+
+London Sound Academy. https://www.londonsoundacademy.com/blog/list-of-electronic-dance-music-genres#:~:text=The%20BPM%20of%20Disco%20can,between%20110%20and%20135%20BPM. 2023. 
+
+U2. https://www.u2.com/. 2023.
+
+Sidebar {.sidebar} 
 =====================================
+
