@@ -226,7 +226,7 @@ WithWithout |>
 Sidebar {.sidebar}
 -------------------------------------
 
-*Chroma Analysis*
+**Chroma Analysis**
 
 On this page I showcase the chroma features of three different tracks by U2, to delve a bit deeper into the harmonic structure of some of their songs in different periods. I have chosen:
 
@@ -262,7 +262,7 @@ One |>
 Sidebar {.sidebar}
 -------------------------------------
 
-*Loudness and Timbre*
+**Loudness and Timbre**
 
 The Cepstogram (or 'Timbregram') on the right showcases the Timbre features of one of U2's most well known songs: 'One' (1991) from the album 'Achtung Baby'. This album showcases the transition between their early work and their experimental phase in the 90's. It also provides the only number 1 hit they score in this period, which ironically is closest to their earlier work as well. 'One' has quite a standard structure: (V-CH-V2-CH2-V3-CH3-B-Ch4-Outtro) but increases in energy exponentially towards the climax where singer Bono exclaims 'Higher! (Baby). This is represented very well in the cepstogram, where timbre feature c01 (loudness) increases in magnitude all the way through to the end.
 
@@ -288,7 +288,7 @@ knitr::include_graphics("/Users/lucastaams/portfolio2023/Surrender Tempogram.png
 Sidebar {.sidebar}
 -------------------------------------
 
-*Temporal comparisons*
+**Temporal comparisons**
 
 For my temporal comparisons I have chosen the 2 tracks with the highest energy values from both periods (according to the scatter plot on the track features page). They are also both over 5 minutes, making them, to an extent, equals in their own time periods.
 
@@ -383,7 +383,10 @@ heatmaply(U290s2_juice,
           )
 ```
 
-*CLustering Heatmaps*
+Sidebar {.sidebar}
+-------------------------------------
+
+**CLustering Heatmaps**
 
 The interactive heatmaps on the right side show both the playlists within my corpus clustered together based on some of the Spotify API's track feature classifications. 
 
